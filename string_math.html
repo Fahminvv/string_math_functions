@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String and Math Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f6fc;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #34495e;
+        }
+
+        .section {
+            background-color: white;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 850px;
+            border-radius: 8px;
+            border: 1px solid #d8e1ee;
+        }
+
+        h2 {
+            color: #287a78;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+            max-width: 95%;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 5px;
+            background-color: #dcefeb;
+            border: 1px solid #9ac9c0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c5e4dd;
+        }
+
+        .result {
+            background-color: #f5f8fc;
+            padding: 10px;
+            min-height: 20px;
+            overflow-wrap: anywhere;
+        }
+
+        .operation {
+            margin-bottom: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>String and Math Functions in JavaScript</h1>
+
+    <div class="section">
+        <h2>String Functions</h2>
+
+        <label>Enter text:</label>
+        <input type="text" id="text" value="Hello JavaScript Hello">
+        <br>
+
+        <div class="operation">
+            <button onclick="findLength()">Length</button>
+            <button onclick="upperCase()">Uppercase</button>
+            <button onclick="lowerCase()">Lowercase</button>
+            <p id="stringResult" class="result">Result appears here.</p>
+        </div>
+
+        <div class="operation">
+            <label>Word to search:</label>
+            <input type="text" id="word" value="Hello">
+            <br>
+            <button onclick="firstOccurrence()">First occurrence</button>
+            <button onclick="lastOccurrence()">Last occurrence</button>
+            <button onclick="searchWord()">Search word</button>
+            <p id="searchResult" class="result">Search result appears here.</p>
+        </div>
+
+        <div class="operation">
+            <label>Start index:</label>
+            <input type="number" id="start" value="0">
+            <label>End index / Length:</label>
+            <input type="number" id="end" value="5">
+            <br>
+            <button onclick="doSlice()">Slice</button>
+            <button onclick="doSubstring()">Substring</button>
+            <button onclick="doSubstr()">Substr</button>
+            <p id="cutResult" class="result">Slicing result appears here.</p>
+        </div>
+
+        <div class="operation">
+            <label>Word to replace:</label>
+            <input type="text" id="oldWord" value="Hello">
+            <label>New word:</label>
+            <input type="text" id="newWord" value="Hi">
+            <br>
+            <button onclick="replaceWord()">Replace word</button>
+            <p id="replaceResult" class="result">Replacement result appears here.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Math Functions</h2>
+
+        <label>Number:</label>
+        <input type="number" id="num" value="-4.6" step="any">
+        <br>
+        <button onclick="squareRoot()">Square root</button>
+        <button onclick="roundNumber()">Round</button>
+        <button onclick="ceilNumber()">Ceiling</button>
+        <button onclick="floorNumber()">Floor</button>
+        <button onclick="absoluteValue()">Absolute value</button>
+        <button onclick="sineValue()">Sine</button>
+        <button onclick="cosineValue()">Cosine</button>
+        <p id="mathResult" class="result">Math result appears here.</p>
+
+        <hr>
+
+        <label>Base / First number:</label>
+        <input type="number" id="num1" value="2" step="any">
+        <label>Exponent / Second number:</label>
+        <input type="number" id="num2" value="3" step="any">
+        <br>
+        <button onclick="powerValue()">Power</button>
+        <button onclick="minimumValue()">Minimum</button>
+        <button onclick="maximumValue()">Maximum</button>
+        <p id="twoNumberResult" class="result">Result appears here.</p>
+
+        <button onclick="randomValue()">Random number</button>
+        <p id="randomResult" class="result">Random number appears here.</p>
+    </div>
+
+    <script>
+        function getText() {
+            return document.getElementById("text").value;
+        }
+
+        function findLength() {
+            var text = getText();
+            document.getElementById("stringResult").innerHTML =
+                "Length: " + text.length;
+        }
+
+        function upperCase() {
+            var text = getText();
+            document.getElementById("stringResult").innerHTML =
+                text.toUpperCase();
+        }
+
+        function lowerCase() {
+            var text = getText();
+            document.getElementById("stringResult").innerHTML =
+                text.toLowerCase();
+        }
+
+        function firstOccurrence() {
+            var text = getText();
+            var word = document.getElementById("word").value;
+            document.getElementById("searchResult").innerHTML =
+                "First occurrence index: " + text.indexOf(word);
+        }
+
+        function lastOccurrence() {
+            var text = getText();
+            var word = document.getElementById("word").value;
+            document.getElementById("searchResult").innerHTML =
+                "Last occurrence index: " + text.lastIndexOf(word);
+        }
+
+        function searchWord() {
+            var text = getText();
+            var word = document.getElementById("word").value;
+            document.getElementById("searchResult").innerHTML =
+                text.includes(word);
+        }
+
+        function doSlice() {
+            var text = getText();
+            var start = Number(document.getElementById("start").value);
+            var end = Number(document.getElementById("end").value);
+            document.getElementById("cutResult").innerHTML =
+                text.slice(start, end);
+        }
+
+        function doSubstring() {
+            var text = getText();
+            var start = Number(document.getElementById("start").value);
+            var end = Number(document.getElementById("end").value);
+            document.getElementById("cutResult").innerHTML =
+                text.substring(start, end);
+        }
+
+        function doSubstr() {
+            var text = getText();
+            var start = Number(document.getElementById("start").value);
+            var length = Number(document.getElementById("end").value);
+            document.getElementById("cutResult").innerHTML =
+                text.substr(start, length);
+        }
+
+        function replaceWord() {
+            var text = getText();
+            var oldWord = document.getElementById("oldWord").value;
+            var newWord = document.getElementById("newWord").value;
+
+            if (oldWord === "") {
+                document.getElementById("replaceResult").innerHTML =
+                    "Enter a word to replace.";
+            } else {
+                document.getElementById("replaceResult").innerHTML =
+                    text.replace(oldWord, newWord);
+            }
+        }
+
+        function getNumber() {
+            return document.getElementById("num").value;
+        }
+
+        function squareRoot() {
+            var n = Number(getNumber());
+            document.getElementById("mathResult").innerHTML =
+                "Square root: " + Math.sqrt(n);
+        }
+
+        function roundNumber() {
+            var n = Number(getNumber());
+            document.getElementById("mathResult").innerHTML =
+                "Round: " + Math.round(n);
+        }
+
+        function ceilNumber() {
+            var n = Number(getNumber());
+            document.getElementById("mathResult").innerHTML =
+                "Ceiling: " + Math.ceil(n);
+        }
+
+        function floorNumber() {
+            var n = Number(getNumber());
+            document.getElementById("mathResult").innerHTML =
+                "Floor: " + Math.floor(n);
+        }
+
+        function absoluteValue() {
+            var n = Number(getNumber());
+            document.getElementById("mathResult").innerHTML =
+                "Absolute value: " + Math.abs(n);
+        }
+
+        function sineValue() {
+            var degrees = Number(getNumber());
+            var radians = degrees * Math.PI / 180;
+            document.getElementById("mathResult").innerHTML =
+                "Sine: " + Math.sin(radians);
+        }
+
+        function cosineValue() {
+            var degrees = Number(getNumber());
+            var radians = degrees * Math.PI / 180;
+            document.getElementById("mathResult").innerHTML =
+                "Cosine: " + Math.cos(radians);
+        }
+
+        function powerValue() {
+            var base = Number(document.getElementById("num1").value);
+            var exponent = Number(document.getElementById("num2").value);
+            document.getElementById("twoNumberResult").innerHTML =
+                "Power: " + Math.pow(base, exponent);
+        }
+
+        function minimumValue() {
+            var a = Number(document.getElementById("num1").value);
+            var b = Number(document.getElementById("num2").value);
+            document.getElementById("twoNumberResult").innerHTML =
+                "Minimum: " + Math.min(a, b);
+        }
+
+        function maximumValue() {
+            var a = Number(document.getElementById("num1").value);
+            var b = Number(document.getElementById("num2").value);
+            document.getElementById("twoNumberResult").innerHTML =
+                "Maximum: " + Math.max(a, b);
+        }
+
+        function randomValue() {
+            document.getElementById("randomResult").innerHTML =
+                "Random number: " + Math.random();
+        }
+    </script>
+</body>
+</html>
